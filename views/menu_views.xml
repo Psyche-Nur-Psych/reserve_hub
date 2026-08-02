@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root App Menu -->
+    <menuitem id="menu_reserve_hub_root"
+              name="ReserveHub"
+              web_icon="reserve_hub,static/description/icon.png"
+              sequence="10"/>
+
+    <!-- Bookings Category -->
+    <menuitem id="menu_reserve_booking_root"
+              name="Bookings"
+              parent="menu_reserve_hub_root"
+              sequence="10"/>
+
+    <menuitem id="menu_reserve_booking_calendar"
+              name="Booking Calendar"
+              parent="menu_reserve_booking_root"
+              action="action_reserve_booking_all"
+              sequence="10"/>
+
+    <menuitem id="menu_reserve_booking_my"
+              name="My Bookings"
+              parent="menu_reserve_booking_root"
+              action="action_reserve_booking_my"
+              sequence="20"/>
+
+    <menuitem id="menu_reserve_booking_pending"
+              name="Pending Approval"
+              parent="menu_reserve_booking_root"
+              action="action_reserve_booking_pending"
+              groups="reserve_hub.group_reserve_hub_manager"
+              sequence="30"/>
+
+    <menuitem id="menu_reserve_booking_all"
+              name="All Bookings"
+              parent="menu_reserve_booking_root"
+              action="action_reserve_booking_all"
+              sequence="40"/>
+
+    <!-- Resources Category -->
+    <menuitem id="menu_reserve_resource_root"
+              name="Resources"
+              parent="menu_reserve_hub_root"
+              sequence="20"/>
+
+    <menuitem id="menu_reserve_resource"
+              name="Resource Directory"
+              parent="menu_reserve_resource_root"
+              action="action_reserve_resource"
+              sequence="10"/>
+
+    <menuitem id="menu_resource_category"
+              name="Categories"
+              parent="menu_reserve_resource_root"
+              action="action_resource_category"
+              sequence="20"/>
+
+    <!-- Analytics & Dashboard -->
+    <menuitem id="menu_reserve_analytics"
+              name="Analytics &amp; Dashboard"
+              parent="menu_reserve_hub_root"
+              action="action_reserve_dashboard"
+              groups="reserve_hub.group_reserve_hub_manager"
+              sequence="30"/>
+
+    <!-- Configuration Menu -->
+    <menuitem id="menu_reserve_config"
+              name="Configuration"
+              parent="menu_reserve_hub_root"
+              groups="reserve_hub.group_reserve_hub_admin"
+              sequence="40"/>
+
+    <menuitem id="menu_reserve_config_categories"
+              name="Resource Categories"
+              parent="menu_reserve_config"
+              action="action_resource_category"
+              sequence="10"/>
+</odoo>
