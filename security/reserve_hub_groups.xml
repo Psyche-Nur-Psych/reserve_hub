@@ -10,23 +10,20 @@
 
         <!-- Employee Group -->
         <record id="group_reserve_hub_employee" model="res.groups">
-            <field name="name">Employee</field>
-            <field name="category_id" ref="module_category_reserve_hub"/>
+            <field name="name">ReserveHub / Employee</field>
             <field name="comment">Employees can view resources and create booking requests.</field>
         </record>
 
         <!-- Manager Group -->
         <record id="group_reserve_hub_manager" model="res.groups">
-            <field name="name">Manager</field>
-            <field name="category_id" ref="module_category_reserve_hub"/>
+            <field name="name">ReserveHub / Manager</field>
             <field name="implied_ids" eval="[(4, ref('group_reserve_hub_employee'))]"/>
             <field name="comment">Managers can approve/reject bookings and manage resources.</field>
         </record>
 
         <!-- Administrator Group -->
         <record id="group_reserve_hub_admin" model="res.groups">
-            <field name="name">Administrator</field>
-            <field name="category_id" ref="module_category_reserve_hub"/>
+            <field name="name">ReserveHub / Administrator</field>
             <field name="implied_ids" eval="[(4, ref('group_reserve_hub_manager'))]"/>
             <field name="comment">Full administrative access to ReserveHub configuration and data.</field>
         </record>

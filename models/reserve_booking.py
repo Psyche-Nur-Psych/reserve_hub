@@ -85,7 +85,7 @@ class ReserveBooking(models.Model):
     @api.depends('start_datetime', 'end_datetime')
     def _compute_duration(self):
         for record in self:
-            if record.start_datetime and record.end_datetime:
+            if record.start_datetime and record.end_datetime and record.end_datetime > record.start_datetime:
                 delta = record.end_datetime - record.start_datetime
                 record.duration = round(delta.total_seconds() / 3600.0, 2)
             else:

@@ -88,7 +88,11 @@
                         </page>
                     </notebook>
                 </sheet>
-                <chatter/>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
@@ -125,8 +129,7 @@
                       date_start="start_datetime"
                       date_stop="end_datetime"
                       color="resource_id"
-                      quick_create="0"
-                      event_open_popup="true">
+                      quick_create="0">
                 <field name="name"/>
                 <field name="title"/>
                 <field name="resource_id"/>
@@ -141,7 +144,7 @@
         <field name="name">reserve.booking.search</field>
         <field name="model">reserve.booking</field>
         <field name="arch" type="xml">
-            <search string="Search Bookings">
+            <search>
                 <field name="name"/>
                 <field name="title"/>
                 <field name="resource_id"/>
@@ -155,16 +158,13 @@
                 <filter string="Approved" name="approved" domain="[('state', '=', 'approved')]"/>
                 <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
                 <filter string="Completed" name="done" domain="[('state', '=', 'done')]"/>
-                <separator/>
-                <filter string="Today" name="today" domain="[('start_datetime', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))), ('start_datetime', '&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"/>
 
                 <!-- Group By -->
-                <group expand="0" string="Group By">
+                <group name="groupby">
                     <filter string="Resource" name="group_by_resource" context="{'group_by': 'resource_id'}"/>
                     <filter string="Category" name="group_by_category" context="{'group_by': 'category_id'}"/>
                     <filter string="Status" name="group_by_state" context="{'group_by': 'state'}"/>
                     <filter string="Requested By" name="group_by_user" context="{'group_by': 'user_id'}"/>
-                    <filter string="Start Date" name="group_by_start_datetime" context="{'group_by': 'start_datetime:day'}"/>
                 </group>
             </search>
         </field>
@@ -175,6 +175,7 @@
         <field name="name">All Bookings</field>
         <field name="res_model">reserve.booking</field>
         <field name="view_mode">calendar,list,form,pivot,graph</field>
+        <field name="search_view_id" ref="view_reserve_booking_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new Booking Request!
@@ -189,6 +190,7 @@
         <field name="name">My Bookings</field>
         <field name="res_model">reserve.booking</field>
         <field name="view_mode">calendar,list,form</field>
+        <field name="search_view_id" ref="view_reserve_booking_search"/>
         <field name="context">{'search_default_my_bookings': 1}</field>
     </record>
 
@@ -196,6 +198,7 @@
         <field name="name">Pending Approval</field>
         <field name="res_model">reserve.booking</field>
         <field name="view_mode">list,calendar,form</field>
+        <field name="search_view_id" ref="view_reserve_booking_search"/>
         <field name="context">{'search_default_pending_approval': 1}</field>
     </record>
 </odoo>

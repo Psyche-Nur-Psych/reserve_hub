@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Root App Menu -->
+    <!-- Root App Menu with Default Action -->
     <menuitem id="menu_reserve_hub_root"
               name="ReserveHub"
+              action="action_reserve_booking_all"
               web_icon="reserve_hub,static/description/icon.png"
               sequence="10"/>
 

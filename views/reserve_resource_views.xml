@@ -21,7 +21,7 @@
         </field>
     </record>
 
-    <!-- Kanban View -->
+    <!-- Kanban View for Odoo 19 -->
     <record id="view_reserve_resource_kanban" model="ir.ui.view">
         <field name="name">reserve.resource.kanban</field>
         <field name="model">reserve.resource</field>
@@ -38,7 +38,7 @@
                 <field name="booking_count"/>
                 <templates>
                     <t t-name="card">
-                        <div class="d-flex align-items-start gap-2 p-2">
+                        <div class="oe_kanban_global_click d-flex align-items-start gap-2 p-2">
                             <field name="image_1920" widget="image" class="o_kanban_image img-thumbnail me-2" style="width: 64px; height: 64px; object-fit: cover;"/>
                             <div class="flex-grow-1">
                                 <div class="fw-bold fs-5 text-primary">
@@ -50,17 +50,13 @@
                                 <div class="mt-1">
                                     <span class="badge bg-secondary me-1"><field name="category_id"/></span>
                                     <span t-if="record.capacity.raw_value &gt; 0" class="badge bg-info">
-                                        <i class="fa fa-users me-1"/> <field name="capacity"/>
+                                        <field name="capacity"/> Persons
                                     </span>
                                 </div>
                                 <div class="mt-2 d-flex justify-content-between align-items-center">
                                     <span t-if="record.state.raw_value == 'available'" class="badge bg-success">Available</span>
                                     <span t-if="record.state.raw_value == 'maintenance'" class="badge bg-warning text-dark">Maintenance</span>
                                     <span t-if="record.state.raw_value == 'archived'" class="badge bg-danger">Out of Service</span>
-                                    
-                                    <button type="object" name="action_view_bookings" class="btn btn-sm btn-outline-primary py-0 px-2">
-                                        <i class="fa fa-calendar me-1"/> Bookings (<field name="booking_count"/>)
-                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +97,7 @@
                     </div>
                     <group>
                         <group string="Resource Classification">
-                            <field name="category_id" options="{'no_create': False}"/>
+                            <field name="category_id"/>
                             <field name="location" placeholder="e.g. Building 2, Floor 3"/>
                             <field name="capacity"/>
                         </group>
@@ -133,7 +129,11 @@
                         </page>
                     </notebook>
                 </sheet>
-                <chatter/>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
@@ -143,21 +143,17 @@
         <field name="name">reserve.resource.search</field>
         <field name="model">reserve.resource</field>
         <field name="arch" type="xml">
-            <search string="Search Resources">
+            <search>
                 <field name="name"/>
                 <field name="code"/>
                 <field name="location"/>
                 <field name="category_id"/>
                 <field name="responsible_id"/>
                 <filter string="Available" name="available" domain="[('state', '=', 'available')]"/>
-                <filter string="In Maintenance" name="maintenance" domain="[('state', '=', 'maintenance')]"/>
-                <filter string="Out of Service" name="archived" domain="[('state', '=', 'archived')]"/>
-                <separator/>
-                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
-                <group expand="0" string="Group By">
+                <filter string="Maintenance" name="maintenance" domain="[('state', '=', 'maintenance')]"/>
+                <group name="groupby">
                     <filter string="Category" name="group_by_category" context="{'group_by': 'category_id'}"/>
                     <filter string="Status" name="group_by_state" context="{'group_by': 'state'}"/>
-                    <filter string="Responsible" name="group_by_responsible" context="{'group_by': 'responsible_id'}"/>
                 </group>
             </search>
         </field>
@@ -168,6 +164,7 @@
         <field name="name">Resources</field>
         <field name="res_model">reserve.resource</field>
         <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_reserve_resource_search"/>
         <field name="context">{'search_default_available': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
