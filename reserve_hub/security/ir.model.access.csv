@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_resource_category_all,resource.category.all,model_resource_category,,1,1,1,1
+access_reserve_resource_all,reserve.resource.all,model_reserve_resource,,1,1,1,1
+access_reserve_booking_all,reserve.booking.all,model_reserve_booking,,1,1,1,1
+
+access_resource_category_employee,resource.category.employee,model_resource_category,group_reserve_hub_employee,1,0,0,0
+access_resource_category_manager,resource.category.manager,model_resource_category,group_reserve_hub_manager,1,1,1,1
+access_resource_category_admin,resource.category.admin,model_resource_category,group_reserve_hub_admin,1,1,1,1
+
+access_reserve_resource_employee,reserve.resource.employee,model_reserve_resource,group_reserve_hub_employee,1,0,0,0
+access_reserve_resource_manager,reserve.resource.manager,model_reserve_resource,group_reserve_hub_manager,1,1,1,1
+access_reserve_resource_admin,reserve.resource.admin,model_reserve_resource,group_reserve_hub_admin,1,1,1,1
+
+access_reserve_booking_employee,reserve.booking.employee,model_reserve_booking,group_reserve_hub_employee,1,1,1,0
+access_reserve_booking_manager,reserve.booking.manager,model_reserve_booking,group_reserve_hub_manager,1,1,1,1
+access_reserve_booking_admin,reserve.booking.admin,model_reserve_booking,group_reserve_hub_admin,1,1,1,1

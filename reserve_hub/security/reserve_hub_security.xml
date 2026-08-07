@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Rule: Employees can read all bookings (for calendar availability) but edit only their own draft/submitted bookings -->
+        <record id="rule_reserve_booking_employee" model="ir.rule">
+            <field name="name">ReserveHub Booking Employee Rule</field>
+            <field name="model_id" ref="model_reserve_booking"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_reserve_hub_employee'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Rule: Managers have full multi-user access to all bookings -->
+        <record id="rule_reserve_booking_manager" model="ir.rule">
+            <field name="name">ReserveHub Booking Manager Rule</field>
+            <field name="model_id" ref="model_reserve_booking"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_reserve_hub_manager'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- Rule: Resources accessible by all employees -->
+        <record id="rule_reserve_resource_multi_company" model="ir.rule">
+            <field name="name">ReserveHub Resource Multi-Company / Read Rule</field>
+            <field name="model_id" ref="model_reserve_resource"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_reserve_hub_employee'))]"/>
+        </record>
+    </data>
+</odoo>
