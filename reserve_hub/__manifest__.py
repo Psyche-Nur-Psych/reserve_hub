@@ -1,41 +1,43 @@
-# -*- coding: utf-8 -*-
 {
     'name': 'ReserveHub - Smart Resource Booking System',
     'version': '19.0.1.0.0',
     'category': 'Services/Resource Management',
-    'summary': 'Manage shared resources and handle booking requests with manager approval workflows',
+    'summary': 'Smart resource booking, room reservation, equipment scheduling, and utilization analytics.',
     'description': """
 ReserveHub - Smart Resource Booking System for Odoo 19
 ======================================================
+ReserveHub is an enterprise-grade resource booking application designed for modern organizations.
+Effortlessly schedule conference rooms, vehicles, projectors, laptops, and IT hardware.
 
 Key Features:
 -------------
-* **Resource & Category Management**: Organize equipment, meeting rooms, vehicles, and workspaces.
-* **Booking Requests**: Seamless creation of booking requests with date and time ranges.
-* **Approval Workflow**: Multi-state workflow (Draft -> Submitted -> Approved / Rejected -> Done).
-* **Conflict & Overlap Prevention**: Automated check against overlapping bookings for the same resource.
-* **Calendar View**: Visual overview of resource reservations over days, weeks, and months.
-* **Security & Access Control**: Granular roles for Employee, Manager, and Administrator.
-* **Analytics & Dashboard**: Pivot and graph views for tracking resource utilization and status metrics.
+* **Resource Directory**: Rich Kanban cards with live availability badges and HSL color coding.
+* **Smart Booking Workflow**: Auto-computed duration with collision/overlap validation.
+* **Interactive Calendar**: Resource reservation calendar view with quick previews.
+* **Utilization Analytics**: Built-in Pivot matrix and Bar/Pie utilization charts.
+* **Security & Roles**: Multi-tier access security (Employees vs Managers).
     """,
     'author': 'Antigravity / ReserveHub Team',
-    'website': 'https://www.example.com/reservehub',
+    'website': 'https://github.com/Psyche-Nur-Psych/reserve_hub',
     'license': 'LGPL-3',
     'depends': ['base', 'mail', 'web'],
     'data': [
         'security/reserve_hub_groups.xml',
         'security/ir.model.access.csv',
         'security/reserve_hub_security.xml',
+        'views/res_config_settings_views.xml',
         'views/resource_category_views.xml',
         'views/reserve_resource_views.xml',
         'views/reserve_booking_views.xml',
         'views/dashboard_views.xml',
         'views/menu_views.xml',
     ],
-    'demo': [
-        'data/reserve_hub_demo.xml',
-    ],
-    'images': ['static/description/icon.png'],
+    'assets': {
+        'web.assets_backend': [
+            'reserve_hub/static/src/css/reserve_hub_style.css',
+        ],
+    },
+    'images': ['static/description/banner_kanban.jpg'],
     'installable': True,
     'application': True,
     'auto_install': False,

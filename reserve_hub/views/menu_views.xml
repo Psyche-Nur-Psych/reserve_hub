@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Root App Menu with Default Action -->
+    <!-- Root App Menu -->
     <menuitem id="menu_reserve_hub_root"
               name="ReserveHub"
               action="action_reserve_booking_all"
@@ -9,71 +9,85 @@
 
     <!-- Bookings Category -->
     <menuitem id="menu_reserve_booking_root"
-              name="Bookings"
+              name="📅 Bookings"
               parent="menu_reserve_hub_root"
               sequence="10"/>
 
     <menuitem id="menu_reserve_booking_calendar"
-              name="Booking Calendar"
+              name="📅 Booking Calendar"
               parent="menu_reserve_booking_root"
               action="action_reserve_booking_all"
               sequence="10"/>
 
     <menuitem id="menu_reserve_booking_my"
-              name="My Bookings"
+              name="👤 My Bookings"
               parent="menu_reserve_booking_root"
               action="action_reserve_booking_my"
               sequence="20"/>
 
     <menuitem id="menu_reserve_booking_pending"
-              name="Pending Approval"
+              name="⏳ Pending Approval"
               parent="menu_reserve_booking_root"
               action="action_reserve_booking_pending"
-              groups="reserve_hub.group_reserve_hub_manager"
               sequence="30"/>
 
     <menuitem id="menu_reserve_booking_all"
-              name="All Bookings"
+              name="📋 All Bookings"
               parent="menu_reserve_booking_root"
               action="action_reserve_booking_all"
               sequence="40"/>
 
     <!-- Resources Category -->
     <menuitem id="menu_reserve_resource_root"
-              name="Resources"
+              name="🏢 Resources"
               parent="menu_reserve_hub_root"
               sequence="20"/>
 
     <menuitem id="menu_reserve_resource"
-              name="Resource Directory"
+              name="🏢 Resource Directory"
               parent="menu_reserve_resource_root"
               action="action_reserve_resource"
               sequence="10"/>
 
     <menuitem id="menu_resource_category"
-              name="Categories"
+              name="🏷️ Resource Categories"
               parent="menu_reserve_resource_root"
               action="action_resource_category"
               sequence="20"/>
 
-    <!-- Analytics & Dashboard -->
-    <menuitem id="menu_reserve_analytics"
-              name="Analytics &amp; Dashboard"
+    <!-- Analytics & Dashboard Category (Dropdown Parent) -->
+    <menuitem id="menu_reserve_analytics_root"
+              name="📊 Analytics &amp; Dashboard"
               parent="menu_reserve_hub_root"
-              action="action_reserve_dashboard"
-              groups="reserve_hub.group_reserve_hub_manager"
               sequence="30"/>
+
+    <menuitem id="menu_reserve_analytics_pivot"
+              name="📈 Pivot Matrix"
+              parent="menu_reserve_analytics_root"
+              action="action_reserve_analytics_pivot"
+              sequence="10"/>
+
+    <menuitem id="menu_reserve_analytics_graph"
+              name="📊 Utilization Charts"
+              parent="menu_reserve_analytics_root"
+              action="action_reserve_analytics_graph"
+              sequence="20"/>
 
     <!-- Configuration Menu -->
     <menuitem id="menu_reserve_config"
-              name="Configuration"
+              name="⚙️ Configuration"
               parent="menu_reserve_hub_root"
-              groups="reserve_hub.group_reserve_hub_admin"
               sequence="40"/>
 
-    <menuitem id="menu_reserve_config_categories"
-              name="Resource Categories"
+    <menuitem id="menu_reserve_config_settings"
+              name="⚙️ General Settings"
               parent="menu_reserve_config"
-              action="action_resource_category"
+              action="action_reserve_hub_config_settings"
               sequence="10"/>
+
+    <menuitem id="menu_reserve_config_groups"
+              name="🛡️ Access Rights &amp; Groups"
+              parent="menu_reserve_config"
+              action="base.action_res_groups"
+              sequence="20"/>
 </odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_reserve_hub" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.reserve.hub</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="30"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="ReserveHub" string="ReserveHub" name="reserve_hub" data-key="reserve_hub">
+                    <block title="General Booking Policy" name="general_booking_setting">
+                        <setting id="setting_auto_approve" help="Automatically approve incoming booking requests if resources are available.">
+                            <field name="reserve_hub_auto_approve" widget="boolean_toggle"/>
+                        </setting>
+                        <setting id="setting_max_duration" help="Set maximum allowed booking duration (in hours).">
+                            <field name="reserve_hub_max_duration"/>
+                        </setting>
+                        <setting id="setting_buffer_time" help="Turnaround / preparation time between consecutive bookings.">
+                            <field name="reserve_hub_buffer_time"/>
+                        </setting>
+                    </block>
+                    <block title="Automated Notifications" name="notification_setting">
+                        <setting id="setting_send_email" help="Send automated email notifications upon approval or rejection.">
+                            <field name="reserve_hub_send_email" widget="boolean_toggle"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_reserve_hub_config_settings" model="ir.actions.act_window">
+        <field name="name">ReserveHub Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="context">{'module' : 'reserve_hub', 'bin_size': False}</field>
+    </record>
+</odoo>

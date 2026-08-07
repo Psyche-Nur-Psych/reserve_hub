@@ -1,45 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Pivot View -->
+    <!-- Pivot View for Analytics -->
     <record id="view_reserve_booking_pivot" model="ir.ui.view">
         <field name="name">reserve.booking.pivot</field>
         <field name="model">reserve.booking</field>
         <field name="arch" type="xml">
-            <pivot string="Resource Utilization Analysis" sample="1">
-                <field name="resource_id" type="row"/>
+            <pivot string="Resource Utilization Matrix" sample="1">
                 <field name="category_id" type="row"/>
+                <field name="resource_id" type="row"/>
                 <field name="state" type="col"/>
                 <field name="duration" type="measure"/>
             </pivot>
         </field>
     </record>
 
-    <!-- Graph View -->
+    <!-- Graph View for Analytics -->
     <record id="view_reserve_booking_graph" model="ir.ui.view">
         <field name="name">reserve.booking.graph</field>
         <field name="model">reserve.booking</field>
         <field name="arch" type="xml">
-            <graph string="Booking Metrics Dashboard" type="bar" sample="1">
+            <graph string="Resource Utilization Dashboard" type="bar" sample="1">
                 <field name="resource_id"/>
                 <field name="duration" type="measure"/>
-                <field name="state" type="col"/>
             </graph>
         </field>
     </record>
 
-    <!-- Dashboard Action -->
-    <record id="action_reserve_dashboard" model="ir.actions.act_window">
-        <field name="name">Analytics &amp; Statistics</field>
+    <!-- Action for Pivot Matrix -->
+    <record id="action_reserve_analytics_pivot" model="ir.actions.act_window">
+        <field name="name">Pivot Matrix Analysis</field>
         <field name="res_model">reserve.booking</field>
-        <field name="view_mode">pivot,graph,calendar,list</field>
-        <field name="context">{}</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="view_id" ref="view_reserve_booking_pivot"/>
+        <field name="search_view_id" ref="view_reserve_booking_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                No booking metrics available yet!
+                Pivot Matrix Analysis
             </p>
             <p>
-                Analyze resource utilization, total reserved hours, and request approval statistics here.
+                Analyze booked hours, total requests, and category metrics in a multi-dimensional matrix.
             </p>
         </field>
+    </record>
+
+    <!-- Action for Utilization Charts -->
+    <record id="action_reserve_analytics_graph" model="ir.actions.act_window">
+        <field name="name">Utilization Charts</field>
+        <field name="res_model">reserve.booking</field>
+        <field name="view_mode">graph,pivot,list</field>
+        <field name="view_id" ref="view_reserve_booking_graph"/>
+        <field name="search_view_id" ref="view_reserve_booking_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Resource Utilization Charts
+            </p>
+            <p>
+                Visualize resource popularity and booking hours with interactive bar and pie charts.
+            </p>
+        </field>
+    </record>
+
+    <!-- Legacy Action fallback -->
+    <record id="action_reserve_dashboard" model="ir.actions.act_window">
+        <field name="name">Analytics &amp; Dashboard</field>
+        <field name="res_model">reserve.booking</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="view_id" ref="view_reserve_booking_pivot"/>
+        <field name="search_view_id" ref="view_reserve_booking_search"/>
     </record>
 </odoo>

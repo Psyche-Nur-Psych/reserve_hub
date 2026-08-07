@@ -1,0 +1,185 @@
+/* ==========================================================================
+   RESERVEHUB CYBERNETIC DIGITAL NAVBAR & GLOBAL THEME OVERRIDE (ODOO 19)
+   ========================================================================== */
+
+/* --- 1. ULTRA-CYBERNETIC DIGITAL TOP NAVBAR --- */
+.o_main_navbar {
+    background: linear-gradient(135deg, #090d16 0%, #0f172a 40%, #1e1b4b 100%) !important;
+    border-bottom: 2px solid !important;
+    border-image: linear-gradient(90deg, #6366f1 0%, #06b6d4 50%, #10b981 100%) 1 !important;
+    box-shadow: 0 6px 25px rgba(15, 23, 42, 0.4) !important;
+    padding: 2px 10px !important;
+}
+
+/* Brand Name "ReserveHub" */
+.o_main_navbar .o_menu_brand {
+    font-weight: 900 !important;
+    font-size: 1.25rem !important;
+    background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 50%, #818cf8 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    letter-spacing: 0.5px !important;
+    margin-right: 15px !important;
+}
+
+/* App Switcher 9-Dots Grid Icon */
+.o_main_navbar .o_navbar_apps_menu button {
+    font-size: 1.2rem !important;
+    color: #818cf8 !important;
+    transition: transform 0.3s ease !important;
+}
+
+.o_main_navbar .o_navbar_apps_menu button:hover {
+    transform: rotate(90deg) scale(1.1) !important;
+    color: #38bdf8 !important;
+}
+
+/* Top Nav Links (Bookings, Resources, Analytics, Configuration) */
+.o_main_navbar .o_menu_sections .nav-link,
+.o_main_navbar .o_menu_sections button {
+    color: #e2e8f0 !important;
+    font-weight: 700 !important;
+    font-size: 0.92rem !important;
+    padding: 6px 16px !important;
+    margin: 0 3px !important;
+    border-radius: 20px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.o_main_navbar .o_menu_sections .nav-link:hover,
+.o_main_navbar .o_menu_sections .nav-link.active,
+.o_main_navbar .o_menu_sections button:hover {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+    color: #ffffff !important;
+    border-color: #a5b4fc !important;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.5) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Right Status Bar (Chat, Timer, Avatar, Company) */
+.o_main_navbar .o_menu_systray .nav-link {
+    color: #cbd5e1 !important;
+    font-weight: 600 !important;
+}
+
+.o_main_navbar .o_menu_systray .badge {
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    border-radius: 50px !important;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.6) !important;
+}
+
+/* User Avatar Ring */
+.o_main_navbar .o_user_menu img,
+.o_main_navbar .o_user_menu .oe_topbar_name {
+    border-radius: 50% !important;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* --- 2. DROPDOWN MENU CUSTOM UNIQUE STYLING --- */
+.dropdown-menu {
+    border-radius: 16px !important;
+    border: 1px solid rgba(99, 102, 241, 0.3) !important;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25) !important;
+    padding: 10px !important;
+    background: #ffffff !important;
+}
+
+.dropdown-menu .dropdown-item {
+    border-radius: 10px !important;
+    padding: 10px 16px !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    font-size: 0.95rem !important;
+    transition: all 0.25s ease !important;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item.active {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+    color: #ffffff !important;
+    transform: translateX(5px) !important;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35) !important;
+}
+
+/* --- 3. PAGE BACKGROUND & CANVAS --- */
+.o_action_manager {
+    background-color: #f1f5f9 !important;
+}
+
+.o_control_panel {
+    background: #ffffff !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03) !important;
+}
+
+/* --- 4. CALENDAR VIEW FUTURISTIC STYLING --- */
+.o_calendar_view {
+    background: #f8fafc !important;
+}
+
+.o_calendar_view .fc-event,
+.o_calendar_view .o_event {
+    border-radius: 10px !important;
+    border: none !important;
+    font-weight: 700 !important;
+    padding: 4px 8px !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2) !important;
+    transition: transform 0.2s ease !important;
+}
+
+.o_calendar_view .fc-event:hover {
+    transform: scale(1.03) !important;
+}
+
+/* Calendar Mini Month Sidebar */
+.o_calendar_sidebar {
+    background: #ffffff !important;
+    border-left: 1px solid #e2e8f0 !important;
+    border-radius: 16px !important;
+    margin: 10px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+}
+
+.o_calendar_sidebar .ui-datepicker td a.ui-state-active,
+.o_calendar_sidebar .o_selected_range {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: #ffffff !important;
+    border-radius: 50% !important;
+}
+
+/* --- 5. BUTTONS & CONTROLS --- */
+.btn-primary {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35) !important;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5) !important;
+}
+
+/* View Switcher Icons */
+.o_cp_switch_buttons .btn {
+    border-radius: 8px !important;
+    margin: 0 2px !important;
+}
+
+.o_cp_switch_buttons .btn.active {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: #ffffff !important;
+}
+
+/* --- 6. FORM VIEWS & SHEETS --- */
+.o_form_view .o_form_sheet {
+    border-radius: 20px !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08) !important;
+}

@@ -6,7 +6,7 @@
         <field name="model">reserve.resource</field>
         <field name="arch" type="xml">
             <list string="Reservable Resources">
-                <field name="name"/>
+                <field name="name" class="fw-bold text-primary"/>
                 <field name="code"/>
                 <field name="category_id"/>
                 <field name="location"/>
@@ -21,12 +21,12 @@
         </field>
     </record>
 
-    <!-- Kanban View for Odoo 19 -->
+    <!-- Ultra-Futuristic Digital Color Gradient Kanban View for Odoo 19 -->
     <record id="view_reserve_resource_kanban" model="ir.ui.view">
         <field name="name">reserve.resource.kanban</field>
         <field name="model">reserve.resource</field>
         <field name="arch" type="xml">
-            <kanban class="o_kanban_mobile">
+            <kanban class="o_kanban_mobile" default_group_by="category_id">
                 <field name="id"/>
                 <field name="name"/>
                 <field name="code"/>
@@ -38,25 +38,61 @@
                 <field name="booking_count"/>
                 <templates>
                     <t t-name="card">
-                        <div class="oe_kanban_global_click d-flex align-items-start gap-2 p-2">
-                            <field name="image_1920" widget="image" class="o_kanban_image img-thumbnail me-2" style="width: 64px; height: 64px; object-fit: cover;"/>
-                            <div class="flex-grow-1">
-                                <div class="fw-bold fs-5 text-primary">
-                                    <field name="name"/>
+                        <div class="oe_kanban_global_click p-3 mb-3 position-relative" style="background: #ffffff; border-radius: 18px; border: 1px solid rgba(99, 102, 241, 0.2); box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.15); overflow: hidden;">
+                            <!-- Top Cybernetic Accent Line -->
+                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, #4f46e5, #7c3aed, #06b6d4);"></div>
+                            
+                            <div class="d-flex align-items-start gap-3 mt-1">
+                                <!-- Image Thumbnail with Soft Shadow -->
+                                <div class="flex-shrink-0">
+                                    <field name="image_1920" widget="image" style="width: 76px; height: 76px; object-fit: cover; border-radius: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);"/>
                                 </div>
-                                <div t-if="record.code.raw_value" class="text-muted small">
-                                    Code: <field name="code"/>
-                                </div>
-                                <div class="mt-1">
-                                    <span class="badge bg-secondary me-1"><field name="category_id"/></span>
-                                    <span t-if="record.capacity.raw_value &gt; 0" class="badge bg-info">
-                                        <field name="capacity"/> Persons
-                                    </span>
-                                </div>
-                                <div class="mt-2 d-flex justify-content-between align-items-center">
-                                    <span t-if="record.state.raw_value == 'available'" class="badge bg-success">Available</span>
-                                    <span t-if="record.state.raw_value == 'maintenance'" class="badge bg-warning text-dark">Maintenance</span>
-                                    <span t-if="record.state.raw_value == 'archived'" class="badge bg-danger">Out of Service</span>
+                                
+                                <!-- Content Body -->
+                                <div class="flex-grow-1 min-w-0">
+                                    <div class="d-flex justify-content-between align-items-start mb-1">
+                                        <h5 class="fw-bold mb-0 text-truncate" style="color: #0f172a; font-size: 1.15rem; max-width: 190px;">
+                                            <field name="name"/>
+                                        </h5>
+                                        <span t-if="record.code.raw_value" class="px-2 py-1 font-monospace" style="background: #f1f5f9; color: #475569; border-radius: 8px; font-size: 0.75rem; font-weight: 700; border: 1px solid #cbd5e1;">
+                                            <field name="code"/>
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- Location Tag -->
+                                    <div class="small mb-2 d-flex align-items-center gap-1" style="color: #64748b; font-weight: 600;">
+                                        <i class="fa fa-map-marker" style="color: #f59e0b;" title="Location"></i>
+                                        <span class="text-truncate"><field name="location"/></span>
+                                    </div>
+                                    
+                                    <!-- Harmonious Gradient & Solid Badges Row -->
+                                    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                                        <span class="px-3 py-1 text-white shadow-sm" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); border-radius: 20px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.3px; box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);">
+                                            <field name="category_id"/>
+                                        </span>
+                                        <span t-if="record.capacity.raw_value &gt; 0" class="px-2 py-1 text-white shadow-sm" style="background: linear-gradient(135deg, #0ea5e9, #0284c7); border-radius: 20px; font-size: 0.78rem; font-weight: 700; box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);">
+                                            <i class="fa fa-users me-1" title="Capacity"></i><field name="capacity"/> Seats
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- Status & Action Footer -->
+                                    <div class="d-flex justify-content-between align-items-center pt-2" style="border-top: 1px solid #f1f5f9;">
+                                        <div>
+                                            <span t-if="record.state.raw_value == 'available'" class="px-3 py-1 text-white shadow-sm" style="background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; font-size: 0.75rem; font-weight: 800; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);">
+                                                <i class="fa fa-circle me-1" style="font-size: 8px;" title="Available"></i>Available
+                                            </span>
+                                            <span t-if="record.state.raw_value == 'maintenance'" class="px-3 py-1 text-white shadow-sm" style="background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; font-size: 0.75rem; font-weight: 800; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);">
+                                                <i class="fa fa-wrench me-1" style="font-size: 10px;" title="Maintenance"></i>Maintenance
+                                            </span>
+                                            <span t-if="record.state.raw_value == 'archived'" class="px-3 py-1 text-white shadow-sm" style="background: linear-gradient(135deg, #f43f5e, #e11d48); border-radius: 20px; font-size: 0.75rem; font-weight: 800; box-shadow: 0 4px 12px rgba(244, 63, 94, 0.35);">
+                                                <i class="fa fa-ban me-1" style="font-size: 10px;" title="Out of Service"></i>Out of Service
+                                            </span>
+                                        </div>
+                                        <div class="small fw-bold" style="color: #4f46e5;">
+                                            <i class="fa fa-calendar-check-o me-1" title="Bookings Count"></i>
+                                            <field name="booking_count"/> Bookings
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
