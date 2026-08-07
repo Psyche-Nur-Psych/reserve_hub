@@ -37,7 +37,7 @@ Key Features:
             'reserve_hub/static/src/css/reserve_hub_style.css',
         ],
     },
-    'images': ['static/description/banner_kanban.jpg'],
+    'images': ['static/description/banner_kanban.png'],
     'installable': True,
     'application': True,
     'auto_install': False,

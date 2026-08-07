@@ -3,255 +3,238 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ReserveHub - Smart Resource Booking System</title>
+    <title>ReserveHub - Smart Resource Booking System for Odoo 19</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary-color: #06b6d4;
-            --dark-bg: #0f172a;
-            --light-bg: #f8fafc;
-            --card-border: #e2e8f0;
-        }
+    <!-- FontAwesome 6 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <style>
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            color: #334155;
-            background-color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
         }
 
         .hero-section {
-            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4338ca 100%);
+            background: linear-gradient(135deg, #070a12 0%, #0f172a 40%, #1e1b4b 100%);
+            border-bottom: 3px solid;
+            border-image: linear-gradient(90deg, #6366f1, #06b6d4, #10b981) 1;
             color: #ffffff;
-            border-radius: 20px;
-            padding: 60px 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            position: relative;
-            overflow: hidden;
+            padding: 80px 0 60px 0;
+            border-radius: 0 0 30px 30px;
         }
 
-        .hero-title {
-            font-size: 2.75rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.2;
-        }
-
-        .hero-badge {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            color: #e0e7ff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .badge-version {
+            background: rgba(99, 102, 241, 0.25);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            font-weight: 700;
             padding: 8px 18px;
             border-radius: 50px;
-            font-weight: 600;
             display: inline-block;
-            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+        }
+
+        .gradient-title {
+            background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 50%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
         }
 
         .feature-card {
             background: #ffffff;
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
             transition: all 0.3s ease;
             height: 100%;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.1), 0 10px 10px -5px rgba(99, 102, 241, 0.04);
-            border-color: #c7d2fe;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+            border-color: #a5b4fc;
         }
 
-        .icon-wrapper {
+        .icon-box {
             width: 60px;
             height: 60px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-            color: var(--primary-dark);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
             margin-bottom: 20px;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: #ffffff;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
         }
 
-        .screenshot-box {
-            background: var(--light-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            margin-top: 30px;
-            margin-bottom: 40px;
-        }
-
-        .screenshot-box img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title {
-            font-weight: 800;
-            font-size: 2.25rem;
-            color: var(--dark-bg);
-        }
-
-        .section-subtitle {
-            color: #64748b;
-            font-size: 1.1rem;
-        }
-
-        .badge-pill {
-            padding: 6px 14px;
+        .img-preview {
             border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
+            border: 1px solid #cbd5e1;
+            transition: transform 0.3s ease;
+        }
+
+        .img-preview:hover {
+            transform: scale(1.015);
+        }
+
+        .btn-action-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: #ffffff;
+            font-weight: 700;
+            border-radius: 12px;
+            padding: 14px 32px;
+            border: none;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-action-primary:hover {
+            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+            color: #ffffff;
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.6);
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
 
-<div class="container py-4">
-
-    <!-- HERO HEADER BANNER -->
-    <div class="hero-section text-center">
-        <div class="hero-badge">
-            <i class="fa-solid fa-sparkles me-2"></i> Odoo 19 Certified Module
-        </div>
-        <h1 class="hero-title mb-3">ReserveHub – Smart Resource Booking System</h1>
-        <p class="lead text-light opacity-90 mx-auto" style="max-width: 750px;">
-            Eliminate double-booking conflicts and streamline shared workplace assets with automated overlap checks, manager approval chains, interactive color-coded calendars, and utilization analytics.
-        </p>
-        <div class="d-flex justify-content-center gap-3 mt-4">
-            <span class="badge-pill bg-white text-dark"><i class="fa-solid fa-check text-success me-1"></i> Conflict Prevention</span>
-            <span class="badge-pill bg-white text-dark"><i class="fa-solid fa-check text-success me-1"></i> Manager Approvals</span>
-            <span class="badge-pill bg-white text-dark"><i class="fa-solid fa-check text-success me-1"></i> Interactive Calendar</span>
-            <span class="badge-pill bg-white text-dark"><i class="fa-solid fa-check text-success me-1"></i> Analytics Matrix</span>
-        </div>
-    </div>
-
-    <!-- KEY FEATURES GRID -->
-    <div class="section-header mt-5">
-        <h2 class="section-title">Why Choose ReserveHub?</h2>
-        <p class="section-subtitle">Comprehensive feature suite engineered for high-performance team scheduling.</p>
-    </div>
-
-    <div class="row g-4 mb-5">
-        <div class="col-md-4">
-            <div class="feature-card">
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <h4 class="fw-bold mb-2">Automated Overlap Protection</h4>
-                <p class="text-muted mb-0">Mathematically blocks conflicting reservations for the same resource during overlapping time windows with instant alert popups.</p>
+    <!-- HERO SECTION -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <div class="mb-3">
+                <span class="badge-version">
+                    <i class="fa-solid fa-sparkles me-2"></i>ODOO 19 CERTIFIED & READY
+                </span>
+            </div>
+            <h1 class="display-3 gradient-title mb-3">ReserveHub</h1>
+            <p class="lead text-light opacity-90 mx-auto max-w-700 fw-medium">
+                Smart Resource Booking & Asset Scheduling System for Odoo 19
+            </p>
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <a href="#features" class="btn btn-action-primary">
+                    <i class="fa-solid fa-rocket me-2"></i>Explore Features
+                </a>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="feature-card">
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-user-check"></i>
-                </div>
-                <h4 class="fw-bold mb-2">Manager Approval Chain</h4>
-                <p class="text-muted mb-0">Multi-tier role security (Employee, Manager, Admin) with dedicated Pending Approval queues and approval metadata tracking.</p>
+    </section>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container py-5">
+
+        <!-- PRODUCT BANNER WALKTHROUGH (REAL APPLICATION SCREENSHOTS) -->
+        <div class="row g-4 mb-5 text-center">
+            <div class="col-12">
+                <h2 class="fw-bold text-slate-900 mb-2">Real Application Showcase</h2>
+                <p class="text-muted">Live screenshots of ReserveHub running on Odoo 19 with Cybernetic Top Navbar, Custom Categories, and Settings.</p>
+            </div>
+            <div class="col-12">
+                <h4 class="fw-bold text-start text-indigo-600 mb-3"><i class="fa-solid fa-cubes me-2"></i>1. Resource Directory (Kanban View)</h4>
+                <img src="banner_kanban.png" alt="ReserveHub Resource Directory Screenshot" class="img-fluid img-preview w-100 mb-5">
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="feature-card">
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-calendar-days"></i>
+
+        <!-- 6-FEATURE GRID -->
+        <section id="features" class="py-4">
+            <div class="text-center mb-5">
+                <h3 class="fw-bold">Key Module Capabilities</h3>
+                <p class="text-muted">Built from the ground up for maximum productivity, visual excellence, and zero booking conflicts.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Feature 1 -->
+                <div class="col-md-4">
+                    <div class="feature-card p-4">
+                        <div class="icon-box">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <h4 class="fw-bold fs-5">Cybernetic Navbar &amp; Badges</h4>
+                        <p class="text-muted small">Glassmorphism top navigation bar with glowing brand title, HSL color badges, and rounded card thumbnails.</p>
+                    </div>
                 </div>
-                <h4 class="fw-bold mb-2">Interactive Color Calendar</h4>
-                <p class="text-muted mb-0">Visual color-coded schedule views by day, week, and month for meeting rooms, vehicles, laptops, and workstations.</p>
+
+                <!-- Feature 2 -->
+                <div class="col-md-4">
+                    <div class="feature-card p-4">
+                        <div class="icon-box">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h4 class="fw-bold fs-5">Zero Overlap Validation</h4>
+                        <p class="text-muted small">Real-time Python collision detection prevents double bookings and alerts users before submission.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="col-md-4">
+                    <div class="feature-card p-4">
+                        <div class="icon-box">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <h4 class="fw-bold fs-5">General Settings Panel</h4>
+                        <p class="text-muted small">Configure auto-approval policies, max booking duration limits, buffer turnaround times, and email alerts.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="col-md-4">
+                    <div class="feature-card p-4">
+                        <div class="icon-box">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <h4 class="fw-bold fs-5">Interactive Schedule Calendar</h4>
+                        <p class="text-muted small">Color-coded reservation blocks by resource category with quick preview popups and mini datepicker sidebar.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="col-md-4">
+                    <div class="feature-card p-4">
+                        <div class="icon-box">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h4 class="fw-bold fs-5">Pivot &amp; Graph Analytics</h4>
+                        <p class="text-muted small">Multi-dimensional matrix breakdown and graphical utilization charts to measure popular assets and total hours.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="col-md-4">
+                    <div class="feature-card p-4">
+                        <div class="icon-box">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h4 class="fw-bold fs-5">Access Security &amp; Roles</h4>
+                        <p class="text-muted small">Multi-tier role security separating standard Employees from Managers and System Administrators.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREENSHOT SHOWCASE -->
+        <div class="row g-4 my-5">
+            <div class="col-12 text-center">
+                <h4 class="fw-bold text-start text-indigo-600 mb-3"><i class="fa-solid fa-gear me-2"></i>2. General Booking Policy Settings</h4>
+                <img src="banner_form.png" alt="ReserveHub General Settings Screenshot" class="img-fluid img-preview w-100">
+            </div>
+            <div class="col-12 text-center mt-5">
+                <h4 class="fw-bold text-start text-indigo-600 mb-3"><i class="fa-solid fa-calendar me-2"></i>3. Booking Schedule Calendar View</h4>
+                <img src="banner_calendar.png" alt="ReserveHub Booking Calendar Screenshot" class="img-fluid img-preview w-100">
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="feature-card">
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-chart-pie"></i>
-                </div>
-                <h4 class="fw-bold mb-2">Utilization Analytics</h4>
-                <p class="text-muted mb-0">Built-in Pivot matrices and Bar/Pie charts to analyze total hours booked, request counts, and resource popularity.</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="feature-card">
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                </div>
-                <h4 class="fw-bold mb-2">Audit-Proof Record Lock</h4>
-                <p class="text-muted mb-0">Completed and approved bookings automatically lock down as read-only to preserve legal and administrative audit trails.</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="feature-card">
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-layer-group"></i>
-                </div>
-                <h4 class="fw-bold mb-2">Categorized Resource Hub</h4>
-                <p class="text-muted mb-0">Group assets by category tags, locations, capacity limits, photo thumbnails, and operational status badges.</p>
-            </div>
-        </div>
+
+        <!-- FOOTER BAR -->
+        <footer class="text-center pt-5 mt-5 border-top">
+            <p class="text-muted small">
+                ReserveHub - Smart Resource Booking System &copy; 2026. Developed by <strong>Antigravity / ReserveHub Team</strong>.
+            </p>
+        </footer>
     </div>
-
-    <!-- SCREENSHOT WALKTHROUGH SECTION -->
-    <div class="section-header mt-5">
-        <h2 class="section-title">Visual Tour & Screenshots</h2>
-        <p class="section-subtitle">Take a closer look at the clean, modern interface designed for Odoo 19.</p>
-    </div>
-
-    <!-- Screenshot 1 -->
-    <div class="screenshot-box">
-        <div class="p-3 bg-dark text-white fw-bold d-flex align-items-center justify-content-between">
-            <span><i class="fa-solid fa-boxes-stacked me-2"></i> 1. Resource Directory (Kanban View)</span>
-            <span class="badge bg-primary">Kanban View</span>
-        </div>
-        <img src="banner_kanban.jpg" alt="ReserveHub Resource Directory Kanban View">
-    </div>
-
-    <!-- Screenshot 2 -->
-    <div class="screenshot-box">
-        <div class="p-3 bg-dark text-white fw-bold d-flex align-items-center justify-content-between">
-            <span><i class="fa-solid fa-calendar-check me-2"></i> 2. Booking Request & Manager Approval Bar</span>
-            <span class="badge bg-success">Form View</span>
-        </div>
-        <img src="banner_form.jpg" alt="ReserveHub Booking Form View">
-    </div>
-
-    <!-- Screenshot 3 -->
-    <div class="screenshot-box">
-        <div class="p-3 bg-dark text-white fw-bold d-flex align-items-center justify-content-between">
-            <span><i class="fa-solid fa-calendar-days me-2"></i> 3. Interactive Schedule Calendar</span>
-            <span class="badge bg-info">Calendar View</span>
-        </div>
-        <img src="banner_calendar.jpg" alt="ReserveHub Calendar View">
-    </div>
-
-    <!-- FOOTER CALL TO ACTION -->
-    <div class="text-center py-5 border-top mt-5">
-        <h3 class="fw-bold mb-3">Ready to Streamline Your Workplace Booking?</h3>
-        <p class="text-muted mb-4">Download ReserveHub today and transform resource scheduling in your organization.</p>
-        <div class="d-flex justify-content-center gap-2">
-            <span class="badge bg-dark p-2 fs-6">Module Name: reserve_hub</span>
-            <span class="badge bg-primary p-2 fs-6">Odoo Version: 19.0</span>
-            <span class="badge bg-success p-2 fs-6">License: LGPL-3</span>
-        </div>
-    </div>
-
-</div>
-
 </body>
 </html>
